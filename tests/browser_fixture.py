@@ -36,17 +36,17 @@ async def run():
   await page.add_script_tag(content=init)
   await page.add_script_tag(content=core+'\n'+app,type='module')
   await page.wait_for_selector('h1')
-  assert await page.locator('h1').inner_text()=='先看清，再行动。'
+  assert await page.locator('h1').inner_text()=='投资工作台'
   ok('demo landing and explicit disconnected AI label rendered')
   for tab in ['decision','holdings','review','settings']:
-   await page.locator(f'[data-action="nav-{tab}"]').click()
+   await page.locator(f'.bottom-nav [data-action="nav-{tab}"]').click()
    assert await page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
    await page.screenshot(path=str(OUT/f'{tab}_full.png'),full_page=True)
    await page.screenshot(path=str(OUT/f'{tab}_viewport.png'))
   ok('four tabs operate at 390px; no horizontal overflow')
   await page.locator('[data-action="mode-manual"]').click()
-  await page.locator('[data-action="nav-holdings"]').click()
-  assert await page.get_by_text('初始化账户',exact=True).count()==1
+  await page.locator('.bottom-nav [data-action="nav-holdings"]').click()
+  assert await page.get_by_text('录入账户',exact=True).count()==1
   ok('manual mode starts with no demonstration account')
   await page.locator('[data-action="edit-account"]').first.click()
   assert await page.locator('#sheet').is_visible()
@@ -82,11 +82,11 @@ async def run():
   raw=await page.evaluate("JSON.parse(localStorage.getItem('ethan-invest-trader.local.v1'))")
   assert raw['account']['shares']==50 and raw['account']['cashTotal']==8599 and raw['account']['settledCash']==6000
   ok('sale form updates position; settled funds remain unchanged')
-  await page.locator('[data-action="nav-review"]').click()
+  await page.locator('.bottom-nav [data-action="nav-review"]').click()
   assert await page.get_by_text('<img src=x onerror=alert(1)>',exact=False).count()>0
   assert await page.locator('img[src="x"]').count()==0
   ok('malicious HTML in a note is displayed as literal text')
-  await page.locator('[data-action="nav-settings"]').click()
+  await page.locator('.bottom-nav [data-action="nav-settings"]').click()
   await page.locator('[data-action="strategy"]').click()
   await page.locator('input[name="tranches"]').fill('20')
   await page.locator('input[name="spacingPct"]').fill('10')
@@ -107,7 +107,7 @@ async def run():
   for width in [320,360,430,768,1440]:
    await page.set_viewport_size({'width':width,'height':900})
    for tab in ['decision','holdings','review','settings']:
-    await page.locator(f'[data-action="nav-{tab}"]').click()
+    await page.locator(f'.bottom-nav [data-action="nav-{tab}"]').click()
     assert await page.evaluate('document.documentElement.scrollWidth <= window.innerWidth'),(width,tab)
   ok('responsive layout checks pass 320, 360, 390, 430, 768, 1440px')
   assert not errors,errors

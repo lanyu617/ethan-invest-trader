@@ -7,7 +7,7 @@ function harness(){
  const handlers={};const state={paths:[],skip:0,claim:0,deleted:[],network:[]};
  const context={URL,Promise,Set,
   self:{location:{href:'https://example.test/sw.js'},addEventListener:(name,fn)=>handlers[name]=fn,skipWaiting:()=>state.skip++,clients:{claim:()=>state.claim++}},
-  caches:{open:async()=>({addAll:async paths=>state.paths=paths}),keys:async()=>['unrelated-cache','ethan-trader-shell-old','ethan-trader-shell-0.1.0'],delete:async key=>state.deleted.push(key),match:async()=>({cached:true})},
+  caches:{open:async()=>({addAll:async paths=>state.paths=paths}),keys:async()=>['unrelated-cache','ethan-trader-shell-old','ethan-trader-shell-0.1.2'],delete:async key=>state.deleted.push(key),match:async()=>({cached:true})},
   fetch:async req=>{state.network.push(req);throw new Error('offline');}
  };
  vm.runInNewContext(script,context);return {handlers,state};

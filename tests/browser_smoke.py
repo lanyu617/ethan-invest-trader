@@ -26,20 +26,20 @@ async def run():
         await page.wait_for_function('navigator.serviceWorker.controller !== null')
         await page.wait_for_timeout(400)
         assert await page.title()=='ETHAN INVEST TRADER'
-        assert await page.locator('h1').inner_text()=='先看清，再行动。'
-        assert await page.get_by_text('尚未接入',exact=True).count()>=1
+        assert await page.locator('h1').inner_text()=='投资工作台'
+        assert await page.get_by_text('行情与 AI 未接入',exact=True).count()>=1
         ok('initial screen uses explicit demo mode; AI is not claimed connected')
         assert await page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
         await page.screenshot(path=str(OUT/'01_decision_mobile.png'),full_page=True)
         await page.screenshot(path=str(OUT/'01_decision_viewport.png'))
         for tab in ['holdings','review','settings']:
-            await page.locator(f'[data-action="nav-{tab}"]').click()
+            await page.locator(f'.bottom-nav [data-action="nav-{tab}"]').click()
             assert await page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
             await page.screenshot(path=str(OUT/f'02_{tab}_mobile.png'),full_page=True)
         ok('all four tabs work at 390px without horizontal overflow')
         await page.locator('[data-action="mode-manual"]').click()
-        await page.locator('[data-action="nav-holdings"]').click()
-        assert await page.get_by_text('初始化账户',exact=True).count()==1
+        await page.locator('.bottom-nav [data-action="nav-holdings"]').click()
+        assert await page.get_by_text('录入账户',exact=True).count()==1
         ok('manual mode starts empty, not with demonstration balances')
         await page.locator('[data-action="edit-account"]').first.click()
         assert await page.locator('#sheet').is_visible()
@@ -67,7 +67,7 @@ async def run():
         await page.reload(wait_until='networkidle')
         assert await page.locator('[data-action="mode-manual"]').get_attribute('aria-pressed')=='true'
         ok('manual account survives reload with demo data excluded')
-        await page.locator('[data-action="nav-holdings"]').click()
+        await page.locator('.bottom-nav [data-action="nav-holdings"]').click()
         await page.locator('[data-action="record-trade"]').click()
         await page.locator('select[name="side"]').select_option('sell')
         await page.locator('input[name="shares"]').fill('10')
@@ -81,13 +81,13 @@ async def run():
         assert raw['account']['shares']==50 and raw['account']['cashTotal']==8599 and raw['account']['settledCash']==6000
         assert len(raw['trades'])==1 and raw['account']['source']=='calculated'
         ok('sale recorded once; proceeds not recycled into settled cash')
-        await page.locator('[data-action="nav-review"]').click()
+        await page.locator('.bottom-nav [data-action="nav-review"]').click()
         assert await page.get_by_text('<img src=x onerror=alert(1)>',exact=False).count()>0
         assert await page.locator('img[src="x"]').count()==0
         ok('user notes are escaped; HTML text cannot inject an image or script')
         await page.locator('[data-action="export"]').click()
         ok('backup export entry works')
-        await page.locator('[data-action="nav-settings"]').click()
+        await page.locator('.bottom-nav [data-action="nav-settings"]').click()
         await page.locator('[data-action="strategy"]').click()
         await page.locator('input[name="tranches"]').fill('20')
         await page.locator('input[name="spacingPct"]').fill('10')
@@ -128,7 +128,7 @@ async def run():
         for width in [320,360,430,768,1440]:
             await page.set_viewport_size({'width':width,'height':900})
             for p in ['decision','holdings','review','settings']:
-                await page.locator(f'[data-action="nav-{p}"]').click()
+                await page.locator(f'.bottom-nav [data-action="nav-{p}"]').click()
                 assert await page.evaluate('document.documentElement.scrollWidth <= window.innerWidth'),(width,p)
         ok('responsive smoke test passes 320, 360, 390, 430, 768, and 1440px')
         assert not errors,errors

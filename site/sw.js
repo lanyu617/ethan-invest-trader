@@ -1,5 +1,5 @@
 /* Shell cache only. No API caching, push, analytics, credential storage or queued writes. */
-const CACHE_NAME = 'ethan-trader-shell-0.1.0';
+const CACHE_NAME = 'ethan-trader-shell-0.1.2';
 const ROOT = new URL('./', self.location.href);
 const FILES = ['./','./index.html','./assets/style.css','./assets/app.js','./assets/core.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/maskable-512.png','./icons/apple-touch-icon.png'].map(path => new URL(path, ROOT).href);
 const ALLOWED = new Set(FILES);
