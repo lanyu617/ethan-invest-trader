@@ -1,0 +1,17 @@
+{
+  "mode": "authored code rendered in about:blank; mocked localStorage; no service worker or device-install test",
+  "checks": [
+    "demo landing and explicit disconnected AI label rendered",
+    "four tabs operate at 390px; no horizontal overflow",
+    "manual mode starts with no demonstration account",
+    "UI rejects settled cash greater than total cash",
+    "form saves account in test-double storage with manual source",
+    "sale form updates position; settled funds remain unchanged",
+    "malicious HTML in a note is displayed as literal text",
+    "strategy form validates negative ladder then saves a valid new version",
+    "reset clears fixture account, trades and preferences",
+    "responsive layout checks pass 320, 360, 390, 430, 768, 1440px",
+    "no JavaScript exceptions in fixture test"
+  ],
+  "page_errors": []
+}

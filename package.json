@@ -1,0 +1,19 @@
+{
+  "name": "ethan-invest-trader-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ETHAN INVEST TRADER \u2014 mobile-first, local-only PWA interface prototype",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test tests/*.test.mjs",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "dev": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

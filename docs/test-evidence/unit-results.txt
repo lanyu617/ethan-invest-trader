@@ -1,0 +1,188 @@
+
+> ethan-invest-trader-mobile@0.1.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: initial state contains no fabricated personal account or trades
+ok 1 - initial state contains no fabricated personal account or trades
+  ---
+  duration_ms: 2.314429
+  type: 'test'
+  ...
+# Subtest: demo and manual state are separate objects
+ok 2 - demo and manual state are separate objects
+  ---
+  duration_ms: 0.336213
+  type: 'test'
+  ...
+# Subtest: unknown cash differs from zero
+ok 3 - unknown cash differs from zero
+  ---
+  duration_ms: 0.738396
+  type: 'test'
+  ...
+# Subtest: settled amount is a subset, not an extra asset
+ok 4 - settled amount is a subset, not an extra asset
+  ---
+  duration_ms: 0.208508
+  type: 'test'
+  ...
+# Subtest: held stock may have an unknown cost, but not zero cost
+ok 5 - held stock may have an unknown cost, but not zero cost
+  ---
+  duration_ms: 0.559738
+  type: 'test'
+  ...
+# Subtest: NaN and negative numbers are rejected
+ok 6 - NaN and negative numbers are rejected
+  ---
+  duration_ms: 0.57728
+  type: 'test'
+  ...
+# Subtest: linear ladder uses first fill, not last fill
+ok 7 - linear ladder uses first fill, not last fill
+  ---
+  duration_ms: 0.431001
+  type: 'test'
+  ...
+# Subtest: unknown anchor never guessed from average cost
+ok 8 - unknown anchor never guessed from average cost
+  ---
+  duration_ms: 0.593923
+  type: 'test'
+  ...
+# Subtest: bad ladder parameters are rejected
+ok 9 - bad ladder parameters are rejected
+  ---
+  duration_ms: 0.789857
+  type: 'test'
+  ...
+# Subtest: take-profit formula is deterministic and rounded to cents
+ok 10 - take-profit formula is deterministic and rounded to cents
+  ---
+  duration_ms: 1.289285
+  type: 'test'
+  ...
+# Subtest: purchase includes known fees and adjusts cost basis
+ok 11 - purchase includes known fees and adjusts cost basis
+  ---
+  duration_ms: 1.073985
+  type: 'test'
+  ...
+# Subtest: sale does not immediately recycle proceeds into settled cash
+ok 12 - sale does not immediately recycle proceeds into settled cash
+  ---
+  duration_ms: 0.232697
+  type: 'test'
+  ...
+# Subtest: full exit clears cost and cycle anchor
+ok 13 - full exit clears cost and cycle anchor
+  ---
+  duration_ms: 0.167481
+  type: 'test'
+  ...
+# Subtest: overselling rejected
+ok 14 - overselling rejected
+  ---
+  duration_ms: 0.8176
+  type: 'test'
+  ...
+# Subtest: insufficient total cash rejected
+ok 15 - insufficient total cash rejected
+  ---
+  duration_ms: 0.629488
+  type: 'test'
+  ...
+# Subtest: actual fill with insufficient settled cash remains recordable but flagged
+ok 16 - actual fill with insufficient settled cash remains recordable but flagged
+  ---
+  duration_ms: 1.556602
+  type: 'test'
+  ...
+# Subtest: missing fee is explicit, never silently claimed complete
+ok 17 - missing fee is explicit, never silently claimed complete
+  ---
+  duration_ms: 0.349049
+  type: 'test'
+  ...
+# Subtest: unknown existing cost is not invented
+ok 18 - unknown existing cost is not invented
+  ---
+  duration_ms: 0.184508
+  type: 'test'
+  ...
+# Subtest: duplicate transaction ID is blocked
+ok 19 - duplicate transaction ID is blocked
+  ---
+  duration_ms: 0.235117
+  type: 'test'
+  ...
+# Subtest: historical fill already included in current snapshot cannot be added twice
+ok 20 - historical fill already included in current snapshot cannot be added twice
+  ---
+  duration_ms: 0.171221
+  type: 'test'
+  ...
+# Subtest: future fills are rejected
+ok 21 - future fills are rejected
+  ---
+  duration_ms: 0.358385
+  type: 'test'
+  ...
+# Subtest: full backup round trip
+ok 22 - full backup round trip
+  ---
+  duration_ms: 1.336605
+  type: 'test'
+  ...
+# Subtest: malformed backup rejected without a write
+ok 23 - malformed backup rejected without a write
+  ---
+  duration_ms: 0.241752
+  type: 'test'
+  ...
+# Subtest: corrupt account nested in imported transaction rejected
+ok 24 - corrupt account nested in imported transaction rejected
+  ---
+  duration_ms: 0.579662
+  type: 'test'
+  ...
+# Subtest: service worker precaches only packaged shell resources
+ok 25 - service worker precaches only packaged shell resources
+  ---
+  duration_ms: 4.596736
+  type: 'test'
+  ...
+# Subtest: service worker leaves future private API traffic alone
+ok 26 - service worker leaves future private API traffic alone
+  ---
+  duration_ms: 1.413092
+  type: 'test'
+  ...
+# Subtest: service worker never queues or intercepts writes
+ok 27 - service worker never queues or intercepts writes
+  ---
+  duration_ms: 1.160572
+  type: 'test'
+  ...
+# Subtest: service worker navigation fallback returns shell on simulated network failure
+ok 28 - service worker navigation fallback returns shell on simulated network failure
+  ---
+  duration_ms: 1.852675
+  type: 'test'
+  ...
+# Subtest: service worker updates require explicit activation; unrelated caches retained
+ok 29 - service worker updates require explicit activation; unrelated caches retained
+  ---
+  duration_ms: 3.705797
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 126.671675
